@@ -501,15 +501,14 @@ func (m *Model) applyThemePreview(themeName string) {
 
 // themePageSize returns the number of visible theme rows for page scrolling
 func (m *Model) themePageSize() int {
-	headerLines := 2      // title + blank line
-	borderLines := 4      // top + bottom border + padding
-	footerLines := 2      // potential warning message + blank line
-	statusLine := 1       // status line at bottom
+	headerLines := 2 // title + blank line
+	borderLines := 4 // top + bottom border + padding
+	footerLines := 2 // potential warning message + blank line
+	statusLine := 1  // status line at bottom
 	maxAvailableHeight := m.state.Terminal.Rows - headerLines - borderLines - footerLines - statusLine
 	maxThemeLines := max(5, maxAvailableHeight)
 	return max(1, maxThemeLines-2) // Reserve 2 lines for scroll indicators
 }
-
 
 // handleHelpModeKeys handles input when in help mode
 func (m *Model) handleHelpModeKeys(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
@@ -914,7 +913,7 @@ func (m *Model) handleResourceDelete() (tea.Model, tea.Cmd) {
 	m.state.Modals.ResourceDeleteConfirmationKey = ""
 	m.state.Modals.ResourceDeleteError = nil
 	m.state.Modals.ResourceDeleteLoading = false
-	m.state.Modals.ResourceDeleteCascade = true        // Default to cascade
+	m.state.Modals.ResourceDeleteCascade = true // Default to cascade
 	m.state.Modals.ResourceDeletePropagationPolicy = "foreground"
 	m.state.Modals.ResourceDeleteForce = false
 
@@ -1438,7 +1437,7 @@ func (m *Model) handleKeyMsg(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 				m.treeNav.SetCursor(m.treeView.SelectedIndex())
 			}
 			return m, nil
-		case "left", "h", "right", "l", "enter":
+		case "left", "h", "right", "l", "enter", "shift+left", "H", "shift+right", "L":
 			// Expand/collapse handled by tree view, then sync treeNav
 			if m.treeView != nil {
 				updatedModel, _ := m.treeView.Update(msg)

@@ -27,7 +27,7 @@ func (m *Model) renderHelpModal() string {
 
 	// NAVIGATION
 	navigation := strings.Join([]string{
-		mono("j/k"), " up/down ", bullet(), " ", keycap("Space"), " select ", bullet(), " ", keycap("Enter"), " drill down ", bullet(), " ", keycap("Esc"), " clear/up",
+		keycap("j"), "/", keycap("k"), " up/down ", bullet(), " ", keycap("h"), "/", keycap("l"), " expand/collapse ", bullet(), " ", keycap("Shift+H"), "/", keycap("Shift+L"), " expand/collapse all", bullet(), " ", keycap("Space"), " select ", bullet(), " ", keycap("Enter"), " drill down ", bullet(), " ", keycap("Esc"), " clear/up",
 		"\n",
 		keycap("PgUp"), "/", keycap("PgDn"), " page up/down",
 	}, "")
@@ -57,7 +57,7 @@ func (m *Model) renderHelpModal() string {
 
 	// TREE VIEW - hotkeys specific to tree/resources view
 	treeView := strings.Join([]string{
-		mono("/"), " filter ", bullet(), " ", mono("n"), "/", mono("N"), " next/prev match ", bullet(), " ", keycap("d"), " diff ", bullet(), " ", mono("K"), " open in k9s",
+		mono("/"), " filter ", bullet(), " ", mono("n"), "/", mono("N"), " next/prev match ", bullet(), " ", keycap("d"), " diff ", bullet(), " ", keycap("K"), " open in k9s",
 		"\n",
 		keycap("Space"), " select ", bullet(), " ", keycap("s"), " sync ", bullet(), " ", keycap("Ctrl+D"), " delete ", bullet(), " ", mono(":refresh"), "|", mono(":refresh!"), " ", bullet(), " ", mono(":up"),
 	}, "")
@@ -1101,10 +1101,10 @@ func (m *Model) renderThemeSelectionModal() string {
 	options := m.themeOptions
 
 	// Calculate available height for themes (subtract header, footer, borders, etc.)
-	headerLines := 2      // title + blank line
-	borderLines := 4      // top + bottom border + padding
-	footerLines := 2      // potential warning message + blank line
-	statusLine := 1       // status line at bottom
+	headerLines := 2 // title + blank line
+	borderLines := 4 // top + bottom border + padding
+	footerLines := 2 // potential warning message + blank line
+	statusLine := 1  // status line at bottom
 	maxAvailableHeight := m.state.Terminal.Rows - headerLines - borderLines - footerLines - statusLine
 
 	// Ensure we have a reasonable minimum height

@@ -30,6 +30,8 @@ e2e:
 goldens:
 	UPDATE_GOLDEN=1 go test ./cmd/app -run TestGolden_ -v
 
+run-dev:
+	ARGONAUT_LOG_LEVEL=DEBUG go run ./cmd/app
 # --- k3d cluster management ---
 
 # Start k3d cluster (create if missing)
